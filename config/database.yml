@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch("DB_USERNAME", "work_log_api_user") %>
-  password: <%= ENV.fetch("DB_PASSWORD", "work_log_api") %>
-  host: <%= ENV.fetch("DB_HOST", "127.0.0.1") %>
+  username: <%= Rails.application.credentials.dig(:mysql, :username) || 'work_log_api_user' %>
+  password: <%= Rails.application.credentials.dig(:mysql, :password) || 'work_log_api' %>
+  host: <%= Rails.application.credentials.dig(:mysql, :host) || '127.0.0.1' %>
 
 development:
   <<: *default
