@@ -17,7 +17,7 @@ jobs:
     env:
       RAILS_ENV: test
       TZ: Asia/Tokyo
-      RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY_TEST }}
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY_TEST }}
     services:
       mysql:
         image: mysql:8.4
