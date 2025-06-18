@@ -72,7 +72,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.2
+          ruby-version: .ruby-version
           bundler-cache: true
 
       - name:  rails setup
@@ -86,7 +86,7 @@ jobs:
           npm install @rollup/rollup-linux-x64-gnu@4.34.8
           mysql -h 127.0.0.1 -P 3306 -u root -pwork_log_api < ./db/setup_for_dev.sql
           bin/rails db:prepare
-          bin/rails assets:precompile
+          yarn build
       - name: run tests
         run: |
           bundle exec rspec
