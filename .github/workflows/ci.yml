@@ -82,8 +82,8 @@ jobs:
           npm install
           npm install @rollup/rollup-linux-x64-gnu@4.34.8
           mysql -h 127.0.0.1 -P 3306 -u root -pwork_log_api < ./db/setup_for_dev.sql
-          bin/rails db:prepare
-          bin/rails assets:precompile
+          bundle exec rails db:prepare
+          bundle exec rails assets:precompile
       - name: run tests
         run: |
           bundle exec rspec
