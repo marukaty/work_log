@@ -72,7 +72,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.x
+          ruby-version: 3.4.2
           bundler-cache: true
 
       - name:  rails setup
