@@ -39,7 +39,10 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-
+    env:
+      RAILS_ENV: test
+      TZ: Asia/Tokyo
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY_TEST }}
     services:
       mysql:
         image: mysql
@@ -82,8 +85,8 @@ jobs:
           npm install
           npm install @rollup/rollup-linux-x64-gnu@4.34.8
           mysql -h 127.0.0.1 -P 3306 -u root -pwork_log_api < ./db/setup_for_dev.sql
-          bundle exec rails db:prepare
-          bundle exec rails assets:precompile
+          bin/rails db:prepare
+          bin/rails assets:precompile
       - name: run tests
         run: |
           bundle exec rspec
