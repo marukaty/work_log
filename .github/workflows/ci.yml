@@ -1,4 +1,4 @@
-name: CI
+name: Test
 
 on:
   pull_request:
@@ -44,10 +44,14 @@ jobs:
       mysql:
         image: mysql
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ROOT_PASSWORD: work_log_api
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options:
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
       # redis:
       #   image: redis
@@ -73,4 +77,13 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: mysql2://127.0.0.1:3306
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test
+        run: |
+          bundle install
+          npm install
+          npm install @rollup/rollup-linux-x64-gnu@4.34.8
+          mysql -h 127.0.0.1 -P 3306 -u root -pwork_log_api < ./db/setup_for_dev.sql
+          bin/rails db:prepare
+          bin/rails assets:precompile
+      - name: run tests
+        run: |
+          bundle exec rspec
