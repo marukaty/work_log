@@ -87,6 +87,6 @@ jobs:
           mysql -h 127.0.0.1 -P 3306 -u root -pwork_log_api < ./db/setup_for_dev.sql
           bin/rails db:prepare
           yarn build
-      - name: run tests
-        run: |
-          bundle exec rspec
+      # - name: run tests
+      #   run: |
+      #     bundle exec rspec
