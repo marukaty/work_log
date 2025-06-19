@@ -12,7 +12,7 @@
     "vite": "^6.3.5"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
+    "dev": "nuxt",
+    "build": "nuxi build"
   }
 }
