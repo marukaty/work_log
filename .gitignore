@@ -51,6 +51,7 @@ frontend/.cache
 frontend/dist
 
 # Node dependencies
+/node_modules
 frontend/node_modules
 
 # Logs
@@ -65,3 +66,9 @@ frontend/.idea
 # Local env files
 frontend/.env
 frontend/.env.*
+
+/config/credentials/development.key
+
+/config/credentials/test.key
+
+/config/credentials/production.key
